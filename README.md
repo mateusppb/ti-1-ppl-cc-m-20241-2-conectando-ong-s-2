@@ -1,5 +1,5 @@
 # Conectando ONG 2
- O trabalho se resume na criação de um site que tem como objetivo reunir em uma mesma plataforma diversas ONG's de diferentes áreas de atuação com o intuito de facilitar o acesso a essas ONG’s pelas pessoas que tem interesse em doar.
+ O trabalho se resume na criação de um site que tem como objetivo reunir em uma mesma plataforma diversas ONG's de diferentes áreas de atuação com o intuito de facilitar o acesso a elas pelas pessoas que tem interesse em doar.
     
  Ao facilitar o acesso as ONG’s, o site tem como intenção aumentar o número de doações realizadas, uma vez que, por meio de nossas pesquisas, identificamos que muitas pessoas tem interesse em doar porém encontram dificuldade quando o assunto é encontrar ONG’s que recebam suas doações.
 
