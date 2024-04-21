@@ -8,7 +8,8 @@
 * Ana Clara Seabra Covre
 * Ana Paula Natsumi Yuki 
 * Giovana Nunes Fioravante 
-* Joana Mundim Cicarelli Pinehiro 
+* Joana Mundim Cicarelli Pinehiro
+* Lorena Simões Salles
 * Mateus Pimenta 
 * Pedro Drumond Malta de Souza 
 
