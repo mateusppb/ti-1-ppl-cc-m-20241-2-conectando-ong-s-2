@@ -20,9 +20,17 @@ Esta seção traz explicações breves sobre o conjunto de artefatos que precisa
 
 ## Problema
 
-Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
+Existem diversos problemas quando se trata de doação à ONGs, alguns deles são:
+• A falta de conhecimento sobre a variedade de ONGs e iniciativas sociais que existem, o
+que dificulta a escolha de onde direcionar suas doações ou esforços voluntários e isso
+acaba fazendo com que possíveis doadores não efetuem suas doações.
+• A complexidade e burocracia que pode ser o processo da doação, desencorajando
+potenciais doadores e atrasando a assistência às comunidades necessitadas.
+• Em muitos casos, os doadores não têm visibilidade sobre como suas contribuições são
+realmente utilizadas e qual é o impacto concreto que estão gerando. Isso gera desconfiança
+e reduz a disposição das pessoas em contribuir financeiramente ou de outra forma.
+• Mesmo quando as pessoas desejam ajudar, a falta de plataformas acessíveis e intuitivas
+para conectar doadores e ONGs pode limitar o alcance e o engajamento da comunidade.
 
 **Links Úteis**:
 
