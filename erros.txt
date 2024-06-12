@@ -1,0 +1,3 @@
+logout pressionado deve remover os dados da tela,
+
+filtro funcionando
