@@ -3,6 +3,7 @@ function filterOngs() {
   const name = document.getElementById("searchByName").value.toLowerCase();
   const location = document.getElementById("searchByLocation").value.toLowerCase();
   const donation = document.getElementById("searchByDonation").value.toLowerCase();
+  const category = document.getElementById("searchByCategory").value.toLowerCase();
 
   fetch('data.json')
     .then(response => response.json())
@@ -11,7 +12,8 @@ function filterOngs() {
         const fullLocation = `${ong.street}, ${ong.neighborhood}, ${ong.location}, ${ong.number}`.toLowerCase();
         return ong.name.toLowerCase().includes(name) &&
                fullLocation.includes(location) &&
-               ong.donations.some(d => d.toLowerCase().includes(donation));
+               ong.donations.some(d => d.toLowerCase().includes(donation)) &&
+               ong.category.toLowerCase().includes(category);
       });
       displayOngs(filteredOngs);
     })
@@ -40,8 +42,9 @@ function displayOngs(ongs) {
 // Função para inicializar os eventos após o DOM estar carregado
 function init() {
   document.getElementById("searchByName").addEventListener("input", filterOngs);
-  document.getElementById("searchByLocation").addEventListener("input", filterOngs);
-  document.getElementById("searchByDonation").addEventListener("input", filterOngs);
+  document.getElementById("searchByLocation").addEventListener("change", filterOngs);
+  document.getElementById("searchByDonation").addEventListener("change", filterOngs);
+  document.getElementById("searchByCategory").addEventListener("change", filterOngs);
   
   filterOngs();
 }
