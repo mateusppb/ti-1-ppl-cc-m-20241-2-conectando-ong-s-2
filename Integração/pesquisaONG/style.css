@@ -42,7 +42,7 @@ h1 {
 /* Estilo para o conteúdo principal para garantir que os rodapés não cubram o conteúdo */
 .container {
   flex: 1; /* Faz com que o contêiner principal ocupe o espaço restante */
-  margin-top: 60px; /* Espaço para o rodapé superior */
+  margin-top: 100px; /* Espaço para o rodapé superior */
   margin-bottom: 60px; /* Espaço para o rodapé inferior */
 }
 
@@ -56,22 +56,20 @@ h1 {
 }
 
 /* Estilos para o dropdown */
-.dropdown-menu {
-  width: 100%;
+.filter-container {
+  display: none; /* Esconde o container dos filtros por padrão */
 }
 
-
-/*adição*/
-*{
+/* Adição */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
 
-/*mudança do header*/
-
-header{
+/* Mudança do header */
+header {
   position: fixed;
   top: 0;
   left: 0;
@@ -81,10 +79,9 @@ header{
   justify-content: space-between;
   align-items: center;
   z-index: 99;
-  /*adição*/
 }
 
-.logo{
+.logo {
   font-size: 2.3em;
   color: #050505;
   user-select: none;
@@ -93,7 +90,7 @@ header{
   font-family: monospace;
 }
 
-.navigation a{
+.navigation a {
   position: relative;
   font-size: 1.5em;
   text-decoration: none;
@@ -102,7 +99,7 @@ header{
   color: black;
 }
 
-.navigation a::after{
+.navigation a::after {
   content: '';
   position: absolute;
   left: 0;
@@ -116,7 +113,7 @@ header{
   transition: transform .5s;
 }
 
-.navigation a:hover::after{
+.navigation a:hover::after {
   transform-origin: left;
   transform: scaleX(1);
 }
