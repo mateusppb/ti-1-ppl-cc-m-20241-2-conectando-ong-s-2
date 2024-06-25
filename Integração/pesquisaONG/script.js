@@ -13,7 +13,7 @@ function filterOngs() {
         return ong.name.toLowerCase().includes(name) &&
                fullLocation.includes(location) &&
                ong.donations.some(d => d.toLowerCase().includes(donation)) &&
-               ong.category.toLowerCase().includes(category);
+               (category === "" || ong.category.toLowerCase().includes(category));
       });
       displayOngs(filteredOngs);
     })
@@ -42,10 +42,16 @@ function displayOngs(ongs) {
 // Função para inicializar os eventos após o DOM estar carregado
 function init() {
   document.getElementById("searchByName").addEventListener("input", filterOngs);
-  document.getElementById("searchByLocation").addEventListener("change", filterOngs);
-  document.getElementById("searchByDonation").addEventListener("change", filterOngs);
+  document.getElementById("searchByLocation").addEventListener("input", filterOngs);
+  document.getElementById("searchByDonation").addEventListener("input", filterOngs);
   document.getElementById("searchByCategory").addEventListener("change", filterOngs);
   
+  // Adiciona o evento de clique para mostrar/esconder os filtros
+  document.getElementById("filterToggle").addEventListener("click", function() {
+    const filterContainer = document.getElementById("filterContainer");
+    filterContainer.style.display = filterContainer.style.display === "none" ? "block" : "none";
+  });
+
   filterOngs();
 }
 
