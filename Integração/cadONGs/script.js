@@ -1,37 +1,66 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector('form');
-    const header = document.querySelector("header");
-});
+// Funções necessárias para inicializar 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault();
-        
+// Configurações do banco de dados Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBPwfnx9zFECxSvau9WThOgqDGrhny3YPI",
+  authDomain: "cadastro-de-ongs-c37e9.firebaseapp.com",
+  projectId: "cadastro-de-ongs-c37e9",
+  storageBucket: "cadastro-de-ongs-c37e9.appspot.com",
+  messagingSenderId: "245151527343",
+  appId: "1:245151527343:web:02b0e57fd397585e457f5a"
+};
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+// Envio de formulário
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById('form');
+
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
     const formData = new FormData(form);
 
-        // Captura dos dados do formulário
-        const nomeONG = document.getElementById('InputNome').value;
-        const email = document.getElementById('InputEmail').value;
-        const logomarca = document.querySelector('input[type="file"]').value;
-        const horarioFuncionamento = document.querySelector('input[type="horario"]').value;
-        const categoria = document.getElementById('categoria').value;
-        const pixDoacoes = document.querySelector('input[type="text"]').value;
-        const contatosRedesSociais = document.querySelector('input[name="contatosRedesSociais"]').value;
-        const oQueDoar = document.querySelector('input[type="doacao"]').value;
-        const sobreONG = document.querySelector('textarea[name="sobreONG"]').value;
-        
-        // Exemplo de como mostrar os dados capturados
-        console.log('Nome da ONG:', nomeONG);
-        console.log('Email:', email);
-        console.log('Logomarca da ONG:', logomarca);
-        console.log('Horário de Funcionamento:', horarioFuncionamento);
-        console.log('Categoria da ONG:', categoria);
-        console.log('PIX para doações:', pixDoacoes);
-        console.log('Contatos e Redes Sociais:', contatosRedesSociais);
-        console.log('O que doar:', oQueDoar);
-        console.log('Sobre a ONG:', sobreONG);
-        
-        alert('Dados enviados com sucesso!');
+    const nomeONG = formData.get('nomeONG');
+    const email = formData.get('email');
+    const logomarcaFile = formData.get('logomarca');
+    const horarioFuncionamento = formData.get('horarioFuncionamento');
+    const categoria = formData.get('categoria');
+    const pixDoacoes = formData.get('pixDoacoes');
+    const contatosRedesSociais = formData.get('contatosRedesSociais');
+    const oQueDoar = formData.get('oQueDoar');
+    const sobreONG = formData.get('sobreONG');
 
-    // Recarrega a página
-    window.location.reload();
+    try {
+      // Upload da logomarca
+      const logomarcaRef = ref(storage, 'logomarcas/' + logomarcaFile.name);
+      await uploadBytes(logomarcaRef, logomarcaFile);
+      const logomarcaURL = await getDownloadURL(logomarcaRef);
+
+      // Salvar dados no Firestore
+      await addDoc(collection(db, 'ongs'), {
+        nome: nomeONG,
+        email: email,
+        logomarca: logomarcaURL,
+        horario: horarioFuncionamento,
+        categoria: categoria,
+        pix: pixDoacoes,
+        contatos: contatosRedesSociais,
+        doacao: oQueDoar,
+        sobre: sobreONG
+      });
+
+      alert('Dados enviados com sucesso!');
+      form.reset();
+    } catch (error) {
+      console.error("Erro ao enviar os dados: ", error);
+      alert('Erro ao enviar os dados. Tente novamente.');
+    }
+  });
 });
