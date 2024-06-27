@@ -3,18 +3,22 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Seabra Covre
+    given-names: Ana Clara
+  - family-names: Natsumi Yuki
+    given-names: Ana Paula
+  - family-names: Nunes Fioravante
+    given-names: Giovana
+  - family-names: Cicarelli
+    given-names: Joana
+  - family-names: Salles
+    given-names: Lorena
+  - family-names: Pinheiro
+    given-names: Joana
+ - family-names: Pimenta
+    given-names: Mateus
+ - family-names: Souza
+    given-names: Pedro
   - name-suffix: Professor
     affiliation: PUC Minas
     family-names: 
@@ -24,8 +28,8 @@ authors:
     family-names: 
     given-names: 
 keywords:
-  - 
-  - 
+  - conectando ONGs 2
+  - ciência da computação
 repository-code: 
 license: CC-BY-4.0
 version: 1.0.0
