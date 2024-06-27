@@ -92,13 +92,7 @@ function imprimeDados() {
     ong.o_que_doar.forEach(item => { oqDoar.innerHTML += `<li><p>${item}</p></li>` });
 }
 
-// Funções de comentários
-function salvaComentarios(comentarios) {
-    let allComments = leTodosComentarios();
-    allComments[id] = comentarios;
-    localStorage.setItem('comentarios', JSON.stringify(allComments));
-}
-
+// Funções de comentários e usuários
 function leTodosComentarios() {
     let strComentarios = localStorage.getItem('comentarios');
     let objComentarios = {};
@@ -113,9 +107,15 @@ function leComentarios() {
     return allComments[id] || [];
 }
 
-function adicionaComentario(nome, comentario) {
+function salvaComentarios(comentarios) {
+    let allComments = leTodosComentarios();
+    allComments[id] = comentarios;
+    localStorage.setItem('comentarios', JSON.stringify(allComments));
+}
+
+function adicionaComentario(email, comentario) {
     const comentarios = leComentarios();
-    comentarios.push({ nome, comentario, id: Date.now() });
+    comentarios.push({ email, comentario, id: Date.now() });
     salvaComentarios(comentarios);
 }
 
@@ -131,12 +131,26 @@ function imprimeComentarios() {
     listaComentarios.innerHTML = '';
     const comentarios = leComentarios();
 
-    comentarios.forEach(({ nome, comentario, id }) => {
+    comentarios.forEach(({ email, comentario, id }) => {
         const novoComentario = document.createElement('li');
         novoComentario.classList.add('list-group-item');
-        novoComentario.innerHTML = `<strong>${nome}:</strong> ${comentario}<span class="btn-apagar" onclick="apagaComentario(${id})">Apagar</span>`;
+        novoComentario.innerHTML = `<strong>${email}:</strong> ${comentario}<span class="btn-apagar" onclick="apagaComentario(${id})">Apagar</span>`;
         listaComentarios.appendChild(novoComentario);
     });
+}
+
+function leUsuarios() {
+    let strUsuarios = localStorage.getItem('users');
+    let objUsuarios = [];
+    if (strUsuarios) {
+        objUsuarios = JSON.parse(strUsuarios);
+    }
+    return objUsuarios;
+}
+
+function emailValido(email) {
+    const usuarios = leUsuarios();
+    return usuarios.some(usuario => usuario.email === email);
 }
 
 // Adiciona evento de carregamento da página para exibir os dados da ONG
@@ -149,16 +163,20 @@ window.addEventListener('load', () => {
 document.getElementById('comentarioForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
     const comentario = document.getElementById('comentario').value;
 
-    if (nome && comentario) {
-        adicionaComentario(nome, comentario);
-        imprimeComentarios();
-
-        // Limpar os campos do formulário
-        document.getElementById('nome').value = '';
-        document.getElementById('comentario').value = '';
+    if (email && comentario) {
+        if (emailValido(email)) {
+            adicionaComentario(email, comentario);
+            imprimeComentarios();
+            // Limpar os campos do formulário
+            document.getElementById('email').value = '';
+            document.getElementById('comentario').value = '';
+        } else {
+            alert('Email não cadastrado, por favor cadastre-se ou insira um email válido');
+        }
     }
 });
+
 
