@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector('form');
     const header = document.querySelector("header");
-});
 
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         
-    const formData = new FormData(form);
+        const formData = new FormData(form);
 
         // Captura dos dados do formulário
         const nomeONG = document.getElementById('InputNome').value;
@@ -32,5 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         alert('Dados enviados com sucesso!');
 
-    // Recarrega a página
-    window.location.reload();
+        // Recarrega a página
+        window.location.reload();
+    });
+});
