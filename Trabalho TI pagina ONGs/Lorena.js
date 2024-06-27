@@ -21,7 +21,7 @@ function leDados() {
                         "telefone": "(31) 98457-7640",
                         "whatsapp": "https://wa.me/553184577640",
                         "instagram": "@ame_um_animal_ONG",
-                        "email": "mailto:email@provedor.com.br"
+                        "email": "email@provedor.com.br"
                     },
                     "o_que_doar": ["Ração", "Cobertores", "Brinquedos"],
                     "outras_formas_de_doar": "#"
@@ -37,7 +37,7 @@ function leDados() {
                         "telefone": "(11) 98765-4321",
                         "whatsapp": "https://wa.me/5511987654321",
                         "instagram": "@Doação_Amiga",
-                        "email": "mailto:contato@doacaoamiga.com.br"
+                        "email": "contato@doacaoamiga.com.br"
                     },
                     "o_que_doar": ["Roupas", "Alimentos não perecíveis", "Produtos de higiene"],
                     "outras_formas_de_doar": "#"
@@ -53,7 +53,7 @@ function leDados() {
                         "telefone": "(21) 91234-5678",
                         "whatsapp": "https://wa.me/5521912345678",
                         "instagram": "@amigos_dos_animais_ong",
-                        "email": "mailto:contato@amigosdosanimais.org.br"
+                        "email": "contato@amigosdosanimais.org.br"
                     },
                     "o_que_doar": ["Alimentos enlatados para pets", "Caminhas", "Produtos de limpeza"],
                     "outras_formas_de_doar": "#"
@@ -79,7 +79,6 @@ function imprimeDados() {
     let objDados = leDados();
     const ong = objDados.ONGS.find(ong => ong.id == id);
 
-    console.log(ong);
     nomeDaOng.textContent = ong.nome;
     descricaoDaOng.textContent = ong.sobre;
     logoDaOng.setAttribute("src", ong.logo);
@@ -92,7 +91,13 @@ function imprimeDados() {
     ong.o_que_doar.forEach(item => { oqDoar.innerHTML += `<li><p>${item}</p></li>` });
 }
 
-// Funções de comentários e usuários
+// Funções de comentários
+function salvaComentarios(comentarios) {
+    let allComments = leTodosComentarios();
+    allComments[id] = comentarios;
+    localStorage.setItem('comentarios', JSON.stringify(allComments));
+}
+
 function leTodosComentarios() {
     let strComentarios = localStorage.getItem('comentarios');
     let objComentarios = {};
@@ -105,12 +110,6 @@ function leTodosComentarios() {
 function leComentarios() {
     let allComments = leTodosComentarios();
     return allComments[id] || [];
-}
-
-function salvaComentarios(comentarios) {
-    let allComments = leTodosComentarios();
-    allComments[id] = comentarios;
-    localStorage.setItem('comentarios', JSON.stringify(allComments));
 }
 
 function adicionaComentario(email, comentario) {
@@ -130,27 +129,20 @@ function imprimeComentarios() {
     const listaComentarios = document.getElementById('listaComentarios');
     listaComentarios.innerHTML = '';
     const comentarios = leComentarios();
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
 
     comentarios.forEach(({ email, comentario, id }) => {
         const novoComentario = document.createElement('li');
         novoComentario.classList.add('list-group-item');
-        novoComentario.innerHTML = `<strong>${email}:</strong> ${comentario}<span class="btn-apagar" onclick="apagaComentario(${id})">Apagar</span>`;
+        
+        if (email === currentUserEmail) {
+            novoComentario.innerHTML = `<strong>${email}:</strong> ${comentario}<span class="btn-apagar" onclick="apagaComentario(${id})"> Apagar</span>`;
+        } else {
+            novoComentario.innerHTML = `<strong>${email}:</strong> ${comentario}`;
+        }
+        
         listaComentarios.appendChild(novoComentario);
     });
-}
-
-function leUsuarios() {
-    let strUsuarios = localStorage.getItem('users');
-    let objUsuarios = [];
-    if (strUsuarios) {
-        objUsuarios = JSON.parse(strUsuarios);
-    }
-    return objUsuarios;
-}
-
-function emailValido(email) {
-    const usuarios = leUsuarios();
-    return usuarios.some(usuario => usuario.email === email);
 }
 
 // Adiciona evento de carregamento da página para exibir os dados da ONG
@@ -167,16 +159,24 @@ document.getElementById('comentarioForm').addEventListener('submit', function (e
     const comentario = document.getElementById('comentario').value;
 
     if (email && comentario) {
-        if (emailValido(email)) {
+        // Verificar se o email está cadastrado
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userExists = users.some(user => user.email === email);
+        
+        if (userExists) {
             adicionaComentario(email, comentario);
             imprimeComentarios();
+            
             // Limpar os campos do formulário
             document.getElementById('email').value = '';
             document.getElementById('comentario').value = '';
         } else {
-            alert('Email não cadastrado, por favor cadastre-se ou insira um email válido');
+            alert('Email não cadastrado. Por favor, cadastre-se ou insira um email válido.');
         }
+    } else {
+        alert('Por favor, preencha todos os campos.');
     }
 });
+;
 
 
