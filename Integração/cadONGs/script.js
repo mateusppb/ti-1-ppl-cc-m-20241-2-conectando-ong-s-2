@@ -35,3 +35,53 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.reload();
     });
 });
+
+/*document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Captura dos dados do formulário
+        const nomeONG = document.getElementById('InputNome').value;
+        const email = document.getElementById('InputEmail').value;
+        const logomarca = document.querySelector('input[type="file"]').value; // Isso captura apenas o nome do arquivo, não o arquivo em si
+        const horarioFuncionamento = document.querySelector('input[name="horarioFuncionamento"]').value;
+        const categoria = document.getElementById('categoria').value;
+        const pixDoacoes = document.querySelector('input[name="pixDoacoes"]').value;
+        const contatosRedesSociais = document.querySelector('input[name="contatosRedesSociais"]').value;
+        const oQueDoar = document.querySelector('input[name="oQueDoar"]').value;
+        const sobreONG = document.querySelector('textarea[name="sobreONG"]').value;
+
+        // Criação do objeto JSON com os dados
+        const formData = {
+            nomeONG: nomeONG,
+            email: email,
+            logomarca: logomarca, // Verifique se o valor capturado aqui está correto para o seu caso
+            horarioFuncionamento: horarioFuncionamento,
+            categoria: categoria,
+            pixDoacoes: pixDoacoes,
+            contatosRedesSociais: contatosRedesSociais,
+            oQueDoar: oQueDoar,
+            sobreONG: sobreONG
+        };
+
+        // Convertendo o objeto em JSON
+        const jsonData = JSON.stringify(formData);
+
+        // Armazenando os dados na sessionStorage
+        sessionStorage.setItem('formData', jsonData);
+        
+        window.location.reload();
+
+        form.reset();
+
+        alert('Formulário enviado com sucesso!');
+
+        // Opcional: Remover alerta após alguns segundos
+        // setTimeout(() => {
+        //     alertElement.style.display = 'none';
+        // }, 3000);
+    });
+});
+*/
