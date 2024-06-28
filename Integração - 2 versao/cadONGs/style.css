@@ -25,6 +25,10 @@ header {
     color: black; 
 }
 
+.navigation {
+    font-size: 15px;
+}
+
 .backgroundImg {
     background-image: url('capa ONGs.jpg'); /* Certifique-se de que o caminho da imagem esteja correto */
     background-size: cover; /* Faz com que a imagem cubra toda a área */
