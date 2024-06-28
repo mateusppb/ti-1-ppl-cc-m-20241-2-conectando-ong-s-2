@@ -52,7 +52,7 @@ header {
 }
 
 .backgroundImg {
-    background-image: url('capa ONGs.jpg'); /* Certifique-se de que o caminho da imagem esteja correto */
+    background-image: url('capa voluntarios.jpg'); /* Certifique-se de que o caminho da imagem esteja correto */
     background-size: cover; /* Faz com que a imagem cubra toda a área */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
     background-position: center; /* Centraliza a imagem */
