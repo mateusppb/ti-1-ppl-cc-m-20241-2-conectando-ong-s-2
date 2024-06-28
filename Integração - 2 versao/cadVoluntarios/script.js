@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // JSON com estados e cidades
-    const data = {
+        const data = {
         "estados": [
             {
                 "nome": "São Paulo",
@@ -14,7 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Campinas",
                     "Santos",
                     "Sorocaba",
-                    "São José dos Campos"
+                    "São José dos Campos",
+                    "Ribeirão Preto",
+                    "Guarulhos",
+                    "Barueri",
+                    "São Bernardo do Campo",
+                    "Piracicaba"
                 ]
             },
             {
@@ -25,7 +30,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Niterói",
                     "Petrópolis",
                     "Duque de Caxias",
-                    "Nova Iguaçu"
+                    "Nova Iguaçu",
+                    "Cabo Frio",
+                    "Campos dos Goytacazes",
+                    "Volta Redonda",
+                    "Teresópolis",
+                    "Angra dos Reis"
                 ]
             },
             {
@@ -36,22 +46,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Uberlândia",
                     "Ouro Preto",
                     "Contagem",
-                    "Juiz de Fora"
+                    "Juiz de Fora",
+                    "Montes Claros",
+                    "Ipatinga",
+                    "Uberaba",
+                    "Betim",
+                    "Governador Valadares"
                 ]
             },
-
-            {
-                "nome": "Espírito Santo",
-                "sigla": "ES",
-                "cidades": [
-                    "Vitória",
-                    "Vila Velha",
-                    "Guarapari",
-                    "Cariacica",
-                    "Linhares"
-                ]
-            },
-
             {
                 "nome": "Paraná",
                 "sigla": "PR",
@@ -60,77 +62,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Londrina",
                     "Maringá",
                     "Ponta Grossa",
-                    "Cascavel"
-                ]
-            },
-            {
-                "nome": "Rio Grande do Sul",
-                "sigla": "RS",
-                "cidades": [
-                    "Porto Alegre",
-                    "Caxias do Sul",
-                    "Pelotas",
-                    "Canoas",
-                    "Santa Maria"
-                ]
-            },
-            {
-                "nome": "Bahia",
-                "sigla": "BA",
-                "cidades": [
-                    "Salvador",
-                    "Feira de Santana",
-                    "Vitória da Conquista",
-                    "Camaçari",
-                    "Juazeiro"
-                ]
-            },
-            {
-                "nome": "Santa Catarina",
-                "sigla": "SC",
-                "cidades": [
-                    "Florianópolis",
-                    "Joinville",
-                    "Blumenau",
-                    "São José",
-                    "Chapecó"
-                ]
-            },
-            {
-                "nome": "Pernambuco",
-                "sigla": "PE",
-                "cidades": [
-                    "Recife",
-                    "Olinda",
-                    "Jaboatão dos Guararapes",
-                    "Caruaru",
-                    "Petrolina"
-                ]
-            },
-            {
-                "nome": "Ceará",
-                "sigla": "CE",
-                "cidades": [
-                    "Fortaleza",
-                    "Juazeiro do Norte",
-                    "Sobral",
-                    "Maracanaú",
-                    "Iguatu"
-                ]
-            },
-            {
-                "nome": "Goiás",
-                "sigla": "GO",
-                "cidades": [
-                    "Goiânia",
-                    "Anápolis",
-                    "Aparecida de Goiânia",
-                    "Rio Verde",
-                    "Luziânia"
+                    "Cascavel",
+                    "Foz do Iguaçu",
+                    "São José dos Pinhais",
+                    "Guarapuava",
+                    "Paranaguá",
+                    "Colombo"
                 ]
             }
         ]
-    };
+    }; 
 
     const estadoSelect = document.getElementById('estado');
     const cidadeSelect = document.getElementById('cidade');
