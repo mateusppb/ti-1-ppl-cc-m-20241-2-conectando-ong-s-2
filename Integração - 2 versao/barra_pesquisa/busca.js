@@ -7,25 +7,29 @@ document.getElementById('botao-filtro').addEventListener('click', function() {
     }
 });
 
-const botaoBusca = document.getElementById('botao-busca');
-botaoBusca.addEventListener('click', realizarBusca);
+const formPesquisa = document.getElementById('form-pesquisa');
+const inputBusca = document.getElementById('campo-pesquisa');
 
-const inputBusca = document.getElementById('input-busca');
-inputBusca.addEventListener('input', realizarBusca);
+formPesquisa.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio do formulário
+    realizarBusca();
+});
 
 function realizarBusca() {
     const termoBusca = inputBusca.value.toLowerCase();
-    const estadoSelecionado = document.getElementById('estado').value;
-    const cidadeSelecionada = document.getElementById('cidade').value;
+    const areaInteresseSelecionada = document.getElementById('filtro-interesse').value;
+    const cidadeSelecionada = document.getElementById('filtro-cidade').value;
+    const experienciaSelecionada = document.getElementById('filtro-experiencia').value;
 
-    const voluntariosFiltrados = filtrarVoluntarios(termoBusca, estadoSelecionado, cidadeSelecionada);
+    const voluntariosFiltrados = filtrarVoluntarios(termoBusca, areaInteresseSelecionada, cidadeSelecionada, experienciaSelecionada);
     exibirResultadosBusca(voluntariosFiltrados);
 }
 
-function filtrarVoluntarios(termoBusca, estadoSelecionado, cidadeSelecionada) {
-    // Utilize o array de voluntários (que você provavelmente busca do seu banco de dados)
+function filtrarVoluntarios(termoBusca, areaInteresse, cidadeSelecionada, experienciaSelecionada) {
+    // Array de voluntários (exemplo)
     const voluntarios = [
-        // ... seus dados de voluntários
+        { nome: 'Maria Oliveira', cidade: 'São Paulo', estado: 'SP', interesse: 'educacao', experiencia: '3-5-anos', perfil: 'perfil1.html' },
+        { nome: 'João Silva', cidade: 'Rio de Janeiro', estado: 'RJ', interesse: 'saude', experiencia: '1-3-anos', perfil: 'perfil2.html' }
     ];
 
     let voluntariosFiltrados = voluntarios;
@@ -35,20 +39,24 @@ function filtrarVoluntarios(termoBusca, estadoSelecionado, cidadeSelecionada) {
         voluntariosFiltrados = voluntariosFiltrados.filter(voluntario => {
             const nome = voluntario.nome.toLowerCase();
             const cidade = voluntario.cidade.toLowerCase();
-            const sobre = voluntario.sobreVoluntario.toLowerCase();
 
-            return nome.includes(termoBusca) || cidade.includes(termoBusca) || sobre.includes(termoBusca);
+            return nome.includes(termoBusca) || cidade.includes(termoBusca);
         });
     }
 
-    // Filtra por estado
-    if (estadoSelecionado && estadoSelecionado !== 'todos') {
-        voluntariosFiltrados = voluntariosFiltrados.filter(voluntario => voluntario.estado === estadoSelecionado);
+    // Filtra por área de interesse
+    if (areaInteresse && areaInteresse !== '') {
+        voluntariosFiltrados = voluntariosFiltrados.filter(voluntario => voluntario.interesse === areaInteresse);
     }
 
     // Filtra por cidade
-    if (cidadeSelecionada && cidadeSelecionada !== 'todas') {
-        voluntariosFiltrados = voluntariosFiltrados.filter(voluntario => voluntario.cidade === cidadeSelecionada);
+    if (cidadeSelecionada && cidadeSelecionada !== '') {
+        voluntariosFiltrados = voluntariosFiltrados.filter(voluntario => voluntario.cidade.toLowerCase() === cidadeSelecionada.toLowerCase());
+    }
+
+    // Filtra por experiência
+    if (experienciaSelecionada && experienciaSelecionada !== '') {
+        voluntariosFiltrados = voluntariosFiltrados.filter(voluntario => voluntario.experiencia === experienciaSelecionada);
     }
 
     return voluntariosFiltrados;
@@ -60,10 +68,13 @@ function exibirResultadosBusca(voluntarios) {
 
     voluntarios.forEach(voluntario => {
         const itemLista = document.createElement('li');
+        itemLista.classList.add('perfil'); // Adiciona classe para estilização
         itemLista.innerHTML = `
-        <h3><span class="math-inline">\{voluntario\.nome\}</h3\>
-        <p>{voluntario.cidade} - ${voluntario.estado}</p>
-`;
-listaVoluntarios.appendChild(itemLista);
-});
+            <h3><a href="${voluntario.perfil}">${voluntario.nome}</a></h3>
+            <p>${voluntario.cidade} - ${voluntario.estado}</p>
+            <p>Área de Interesse: ${voluntario.interesse}</p>
+            <p>Experiência: ${voluntario.experiencia}</p>
+        `;
+        listaVoluntarios.appendChild(itemLista);
+    });
 }
